@@ -1,10 +1,10 @@
 <?php if(isset($deleteMessage)){echo $deleteMessage;} ?>
 
 
-<form ACTION="<?php echo base_url() . 'index.php/site/search'; ?>" method='GET'>
-                    First name:         <input type=text name='firstname'> <br/>
-                    Last name:          <input type=text name='lastname'><br/>
-                    Department Name:    <select name="dept">
+<form action="<?php echo site_url('find/findemp') ?>" method='get' class="findemp_search">
+                    First name:         <input type=text name='firstname' id="firstname"> <br/>
+                    Last name:          <input type=text name='lastname' id="lastname"><br/>
+                    Department Name:    <select name="dept" id="dept">
 <option value=""></option>
 <option value="Marketing">Marketing</option>
 <option value="Finance">Finance</option>
@@ -17,7 +17,7 @@
 
 
 </select><br/>
-                    Current job Title:  <select name="jobtitle">
+                    Current job Title:  <select name="jobtitle" id="title">
 <option value=""></option>
 <option value="Staff">Staff</option>
 <option value="Engineer">Engineer</option>
@@ -28,5 +28,9 @@
 
 
 </select><br/>
-					<INPUT TYPE="submit" VALUE="Search">
+					<input type="submit" value="Search" class="submit">
            </form>
+
+<div class="search_results">
+
+</div>

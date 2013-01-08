@@ -1,6 +1,6 @@
 <?php if(isset($addMessage)){echo $addMessage;} ?>
 
-<form action = "/index.php/site/addemp" method = "get">
+<form action = "<?php echo site_url('find/addemp') ?>" method = "get">
 
 
 Birth Date: 	<input type = "text" id ="birth_date" name="birth_date"><br/>

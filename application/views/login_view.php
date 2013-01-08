@@ -5,7 +5,7 @@
     <title>Login</title>
 </head>
 <body>
-<form action="/index.php/login/validate_credentials" method="post">
+<form action="<?php echo site_url('login/validate_credentials') ?>" method="post">
     Username: <input type="text" name="username"/> <br/>
     Password: <input type="password" name="password"/> <br/>
     <input type="Submit" value="Login">

@@ -1,6 +1,6 @@
 <?php if(isset($updateMessage)){echo $updateMessage;} ?>
 
-<form action = "/index.php/site/updateemp" method = "get">
+<form action = "<?php echo site_url('find/updateemp') ?>" method = "get">
 
 		<table>
 			<thead>

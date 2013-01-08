@@ -26,7 +26,7 @@ class Login extends CI_Controller
 				'is_logged_in' => true
 			);
 			$this->session->set_userdata($data);
-			redirect ('site/');
+			redirect ('find');
 		}
 		else
 		{
@@ -40,7 +40,7 @@ class Login extends CI_Controller
 	{
 
 		$this->session->sess_destroy();
-		redirect('site/');
+		redirect('find');
 
 
 	}

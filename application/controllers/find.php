@@ -1,6 +1,6 @@
 <?php
 
-class Site extends CI_Controller{
+class Find extends CI_Controller{
 
 function index()
 {
@@ -11,7 +11,7 @@ function index()
 
 }
 
-function search()
+function findemp()
 {
 	$firstname = $this->input->get('firstname');
 	$lastname = $this->input->get('lastname');
@@ -19,16 +19,14 @@ function search()
 	$jobtitle = $this->input->get('jobtitle');
 
 	$this->load->model('site_model');
-	$res = $this->site_model->get_records($firstname, $lastname, $dept, $jobtitle);
+	$res = $this->site_model->get_records_two($firstname, $lastname, $dept, $jobtitle);
 
-
-	$data['rows'] = $res['rows'];
-	$data['num_rows'] = $res['num_rows'];
+	$data['count'] = $res['num_rows'];
+	$data['results'] = $res['rows'];
 	
 	$is_logged_in = $this->session->userdata('is_logged_in');
-	$data['is_logged_in'] = $is_logged_in;
-	$data['main_content'] = 'search_view';
-	$this->load->view('includes/template', $data);
+	echo json_encode($data);
+	//$this->load->view('includes/template', $data);
 }
 
 

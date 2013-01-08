@@ -1,5 +1,5 @@
 
-<form action="/index.php/search/findemp" method="get">
+<form action="<?php echo site_url('find/findemp') ?>" method="get">
     Name: <input type="text" name="firstname"/> <br/>
     Surname: <input type="text" name="surname"/> <br/>
     Job Title: <input type="text" name="jobtitle"/> <br/>
