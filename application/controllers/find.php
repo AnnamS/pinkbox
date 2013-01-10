@@ -204,8 +204,26 @@ function promotedemote()
 		$data['is_logged_in'] = $is_logged_in;
 		$data['main_content'] = 'update_view';
 		$this->load->view('includes/template', $data);
+	}
+	function salaryview() {
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		$data['is_logged_in'] = $is_logged_in;
+		$data['main_content'] = 'salary_view';
+		$this->load->view('includes/template', $data);
+	}
 
+	function salaryupdate() {
+		$this->load->model('site_model');
 
-}
+		$emp_id = $this->input->post('emp_id');
+		$new_salary = $this->input->post('salary');
+		$old_salary = $this->site_model->get_old_salary($emp_id);
+		$this->site_model->update_salary($emp_id, $old_salary[0]->salary, $new_salary);
 
+		$data['PDmsg'] = "Salary Updated";
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		$data['is_logged_in'] = $is_logged_in;
+		$data['main_content'] = 'salary_view';
+		$this->load->view('includes/template', $data);
+	}
 }

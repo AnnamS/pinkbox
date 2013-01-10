@@ -22,6 +22,7 @@ LOGGED IN!
 			<td><FORM METHOD="LINK" ACTION="<?php echo base_url() . 'index.php/find/'; ?>"><INPUT TYPE="submit" VALUE="Search"></td></FORM></FORM></td> 
 			<td><FORM METHOD="LINK" ACTION="<?php echo base_url() . 'index.php/find/add'; ?>"><INPUT TYPE="submit" VALUE="Add"></td></FORM></FORM></td> 
 			<td><form method="link" action="<?php echo base_url() . 'index.php/find/update'; ?>"><input type="submit" value="Edit"/></td> </form></form></td>
+			<td><form method="link" action="<?php echo base_url() . 'index.php/find/salaryview'; ?>"><input type="submit" value="Salary Update"/></td> </form></form></td>
 			
 
 		</tr>

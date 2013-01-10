@@ -234,4 +234,36 @@ public function promote_employee($emp_no, $dept)
 		return true;
 	}
 
+	function get_old_salary($id) {
+		$this->db->select('salary')
+			->from('salaries')
+			->where('emp_no', $id)
+			->where('to_date', '9999-01-01');
+		$result = $this->db->get();
+		return $result->result();
+	}
+
+	public function change_last_salary($id, $last_salary) {
+		//update the last salary in the database
+		$date_change = array('to_date' => date("Y-m-d"));
+		$this->db->where('emp_no', $id)
+			->where('salary', $last_salary)
+			->where('from_date !=', date("Y-m-d"))
+			->update('salaries', $date_change);
+	}
+
+	public function update_salary($id, $last_salary, $new_salary) {
+		$this->change_last_salary($id, $last_salary);
+		//set the new salary
+		$salary_vars = array(
+			'emp_no' => $id,
+			'salary' => $new_salary,
+			'from_date' => date("Y-m-d"),
+			'to_date' => '9999-01-01'
+		);
+		$this->db->set($salary_vars)
+			->insert('salaries');
+
+		
+	}
 }
