@@ -18,7 +18,7 @@
 }
 </style>
 </head>
-
+<?php echo $is_logged_in; ?>
 <body>
 <form method="get" action="<?php echo base_url() . 'index.php/login/'; ?>">
 <input type="Submit" value="Login" />

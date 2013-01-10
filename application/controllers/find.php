@@ -45,8 +45,13 @@ public function addemp ()
 		$last_name = $this->input->get('last_name');
 		$gender = $this->input->get('gender');
 		$hire_date = $this->input->get('hire_date');
+		$salary = $this->input->get('salary');
+		$manager = $this->input->get('manager');
+		$dept = $this->input->get('dept');
+		$jobtitle = $this->input->get('jobtitle');
+		
 		$this->load->model('site_model');
-		$this->site_model->add_record($birth_date,$first_name,$last_name,$gender,$hire_date);
+		$this->site_model->add_record($birth_date,$first_name,$last_name,$gender,$hire_date,$salary,$manager,$dept,$jobtitle);
 		$data['addMessage'] = 'Employee Added.';
 		
 		$is_logged_in = $this->session->userdata('is_logged_in');
@@ -74,11 +79,13 @@ function update()
 	{
 		$this->load->model('site_model');
 		$res = $this->site_model->getEmployeeData($emp_no);
-
+		$status = $this->site_model->checkDeptManager($emp_no);
 		$data['rows'] = $res['rows'];
 		$data['emp_no'] = $emp_no;
-
+		
 		$is_logged_in = $this->session->userdata('is_logged_in');
+		
+		$data['status'] = $status;
 		$data['is_logged_in'] = $is_logged_in;
 		$data['main_content'] = 'update_view';
 		$this->load->view('includes/template', $data);
@@ -149,6 +156,56 @@ function deleteemp()
 	$data['is_logged_in'] = $is_logged_in;
 	$data['main_content'] = 'search_form';
 	$this->load->view('includes/template', $data);
+}
+
+function promotedemote()
+{
+	$emp_no = $this->input->get('emp_no');
+	
+		$getDept = $this->site_model->get_department($emp_no);
+		$deptField = $getDept['deptField'];
+		$department = $getDept['dept'];
+		
+	foreach($department as $depts)
+	{	
+		foreach($deptField as $field_name => $field_display) 
+		{ 
+		if($field_name == "dept_no"){ $dept = $depts->$field_name;}
+		}	
+	}
+	
+	$promORdem = $this->input->get('promORdem');
+	
+	if($promORdem == "true")
+	{
+		$this->load->model('site_model');
+		$this->site_model->demote_employee($emp_no, $dept);
+		$data['PDmsg'] = "Employee Demoted";
+	}
+	else
+	{
+		$this->load->model('site_model');
+		$this->site_model->promote_employee($emp_no, $dept);
+		$data['PDmsg'] = "Employee Demoted";
+	}
+	
+		$this->load->model('site_model');
+		
+		$res = $this->site_model->getEmployeeData($emp_no);
+		$status = $this->site_model->checkDeptManager($emp_no);
+		$data['rows'] = $res['rows'];
+		$data['emp_no'] = $emp_no;
+		
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		
+		
+		
+		$data['status'] = $status;
+		$data['is_logged_in'] = $is_logged_in;
+		$data['main_content'] = 'update_view';
+		$this->load->view('includes/template', $data);
+
+
 }
 
 }

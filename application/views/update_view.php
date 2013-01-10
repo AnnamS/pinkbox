@@ -1,4 +1,5 @@
 <?php if(isset($updateMessage)){echo $updateMessage;} ?>
+<?php if(isset($PDmsg)){echo $PDmsg;} ?>
 
 <form action = "<?php echo site_url('find/updateemp') ?>" method = "get">
 
@@ -35,7 +36,14 @@
 </tbody>
 </table>
 <br/>
+<table>
+<tr>
 <input type="hidden" name="emp_no" value="<?php echo $emp_no; ?>" />
-<input type="submit" value="Update" /> 
-</form>
+<td><input type="submit" value="Update" /> </td></form>
+<td width="500"></td>
+<td><form method="get" action="<?php echo base_url(). "index.php/find/promotedemote";?>" ><input type="hidden" name="emp_no" value="<?php echo $emp_no;?>"/><input type="hidden" name="promORdem" value="<?php echo $status?>"/><input type="submit" value="<? if($status == "true"){echo "Demote";}else{echo "Promote";}?>" /></form> </td>
+</tr>
+</table>
+
+
 

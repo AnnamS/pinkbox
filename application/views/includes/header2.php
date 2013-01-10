@@ -12,10 +12,11 @@
 </head>
 
 <body>
-
+LOGGED IN! 
 <form method="get" action="<?php echo base_url() . 'index.php/login/logout'; ?>">
 <input type="Submit" value="Logout" />
 </form>
+<?php echo $is_logged_in; ?>
 	<table >
 		<tr>
 			<td><FORM METHOD="LINK" ACTION="<?php echo base_url() . 'index.php/find/'; ?>"><INPUT TYPE="submit" VALUE="Search"></td></FORM></FORM></td> 

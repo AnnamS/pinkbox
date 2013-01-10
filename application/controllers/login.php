@@ -11,6 +11,7 @@ class Login extends CI_Controller
 	{
 		$data['main_content'] = 'login_view';
 		$this->load->view('login_view');
+		
 	}
 
 	public function validate_credentials()
@@ -26,6 +27,7 @@ class Login extends CI_Controller
 				'is_logged_in' => true
 			);
 			$this->session->set_userdata($data);
+			
 			redirect ('find');
 		}
 		else
